@@ -24,24 +24,12 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (!mounted) {
-    return (
-      <nav style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
-        width: "100%", height: "56px",
-        background: "rgba(10,10,15,0.6)",
-        backdropFilter: "blur(16px)",
-        borderBottom: "1px solid rgba(255,255,255,0.06)",
-      }} />
-    );
-  }
+  if (!mounted) return null;
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+      {/* Navbar Container */}
+      <header
         style={{
           position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
           width: "100%", boxSizing: "border-box",
@@ -51,12 +39,15 @@ export default function Navbar() {
           transition: "all 0.3s ease",
         }}
       >
-        <div style={{
-          width: "100%", margin: "0 auto",
-          padding: "0 1rem", display: "flex", alignItems: "center",
-          justifyContent: "space-between", height: "56px", boxSizing: "border-box",
-        }}>
-          {/* Logo */}
+        <div
+          style={{
+            width: "100%", margin: "0 auto",
+            display: "flex", alignItems: "center", justifyContent: "space-between",
+            padding: "0.75rem 1rem",
+            boxSizing: "border-box",
+          }}
+        >
+          {/* Left: Logo */}
           <a href="#" style={{
             fontSize: "1.125rem", fontWeight: 800, letterSpacing: "0.02em",
             textDecoration: "none", flexShrink: 0,
@@ -69,45 +60,62 @@ export default function Navbar() {
             <span style={{ color: "rgba(255,255,255,0.3)" }}>.dev</span>
           </a>
 
-          {/* Hamburger Button */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            style={{
-              display: "flex", flexDirection: "column", justifyContent: "center",
-              alignItems: "center", gap: "5px", background: "none", border: "none",
-              cursor: "pointer", padding: "0.5rem", zIndex: 60, flexShrink: 0,
-            }}
-            aria-label="Toggle menu"
-          >
-            <motion.span
-              animate={mobileOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-              transition={{ duration: 0.3 }}
+          {/* Right: Theme Toggle + Hamburger */}
+          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+            {/* Theme Toggle (Moon icon) */}
+            <button
               style={{
-                width: 24, height: 2, background: "#e2e8f0",
-                borderRadius: 2, display: "block", transformOrigin: "center",
+                background: "none", border: "none", cursor: "pointer",
+                color: "#94a3b8", padding: "0.375rem", display: "flex",
+                alignItems: "center", justifyContent: "center",
               }}
-            />
-            <motion.span
-              animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
-              transition={{ duration: 0.2 }}
-              style={{
-                width: 24, height: 2, background: "#e2e8f0",
-                borderRadius: 2, display: "block",
-              }}
-            />
-            <motion.span
-              animate={mobileOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-              transition={{ duration: 0.3 }}
-              style={{
-                width: 24, height: 2, background: "#e2e8f0",
-                borderRadius: 2, display: "block", transformOrigin: "center",
-              }}
-            />
-          </button>
-        </div>
-      </motion.nav>
+              aria-label="Toggle theme"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+              </svg>
+            </button>
 
-      {/* Mobile Fullscreen Menu Overlay */}
+            {/* Hamburger Menu */}
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              style={{
+                background: "none", border: "none", cursor: "pointer",
+                display: "flex", flexDirection: "column", justifyContent: "center",
+                alignItems: "center", gap: "5px", padding: "0.375rem",
+              }}
+              aria-label="Toggle menu"
+            >
+              <motion.span
+                animate={mobileOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.3 }}
+                style={{
+                  width: 22, height: 2, background: "#e2e8f0",
+                  borderRadius: 2, display: "block", transformOrigin: "center",
+                }}
+              />
+              <motion.span
+                animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
+                transition={{ duration: 0.2 }}
+                style={{
+                  width: 22, height: 2, background: "#e2e8f0",
+                  borderRadius: 2, display: "block",
+                }}
+              />
+              <motion.span
+                animate={mobileOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.3 }}
+                style={{
+                  width: 22, height: 2, background: "#e2e8f0",
+                  borderRadius: 2, display: "block", transformOrigin: "center",
+                }}
+              />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile Menu Overlay — fixed inset-0, full screen */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -115,15 +123,16 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
+            onClick={() => setMobileOpen(false)}
             style={{
               position: "fixed", inset: 0, zIndex: 55,
+              width: "100%", height: "100vh",
               background: "rgba(10,10,15,0.97)",
               backdropFilter: "blur(24px)",
               display: "flex", flexDirection: "column",
               alignItems: "center", justifyContent: "center",
               gap: "2.5rem",
             }}
-            onClick={() => setMobileOpen(false)}
           >
             {navLinks.map((link, i) => (
               <motion.a
