@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
@@ -15,23 +15,36 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
-
-    // Detect desktop
     const checkDesktop = () => setIsDesktop(window.innerWidth >= 768);
+    handleScroll();
     checkDesktop();
+    window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", checkDesktop);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", checkDesktop);
     };
   }, []);
 
-  const handleLinkClick = () => setMobileOpen(false);
+  const handleLinkClick = useCallback(() => setMobileOpen(false), []);
+
+  // SSR fallback — render nothing until mounted
+  if (!mounted) {
+    return (
+      <nav style={{
+        position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
+        width: "100%", height: "60px",
+        background: "rgba(10,10,15,0.6)",
+        backdropFilter: "blur(16px)",
+        borderBottom: "1px solid rgba(255,255,255,0.06)",
+      }} />
+    );
+  }
 
   return (
     <>
@@ -41,12 +54,11 @@ export default function Navbar() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         style={{
           position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
-          width: "100%",
+          width: "100%", boxSizing: "border-box",
           background: scrolled ? "rgba(10,10,15,0.85)" : "rgba(10,10,15,0.6)",
           backdropFilter: "blur(16px)",
           borderBottom: "1px solid rgba(255,255,255,0.06)",
           transition: "all 0.3s ease",
-          boxSizing: "border-box",
         }}
       >
         <div style={{
@@ -55,8 +67,7 @@ export default function Navbar() {
           margin: "0 auto",
           padding: isDesktop ? "0 2rem" : "0 1rem",
           display: "flex", alignItems: "center", justifyContent: "space-between",
-          height: "60px",
-          boxSizing: "border-box",
+          height: "60px", boxSizing: "border-box",
         }}>
           {/* Logo */}
           <a href="#" style={{
@@ -71,11 +82,9 @@ export default function Navbar() {
             <span style={{ color: "rgba(255,255,255,0.3)" }}>.dev</span>
           </a>
 
-          {/* Desktop Nav */}
-          {isDesktop && (
-            <div style={{
-              display: "flex", alignItems: "center", gap: "2rem",
-            }}>
+          {/* Desktop Nav — only render on desktop */}
+          {isDesktop ? (
+            <div style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
               {navLinks.map((link) => (
                 <a
                   key={link.label}
@@ -83,20 +92,17 @@ export default function Navbar() {
                   style={{
                     fontSize: "0.8rem", fontWeight: 600, color: "#94a3b8",
                     textDecoration: "none", textTransform: "uppercase",
-                    letterSpacing: "0.1em", transition: "color 0.2s",
-                    padding: "0.5rem 0",
+                    letterSpacing: "0.1em", padding: "0.5rem 0",
                   }}
-                  onMouseEnter={(e) => e.currentTarget.style.color = "#00f0ff"}
-                  onMouseLeave={(e) => e.currentTarget.style.color = "#94a3b8"}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "#00f0ff")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "#94a3b8")}
                 >
                   {link.label}
                 </a>
               ))}
             </div>
-          )}
-
-          {/* Mobile Hamburger — only on mobile */}
-          {!isDesktop && (
+          ) : (
+            /* Mobile Hamburger — only render on mobile */
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               style={{
