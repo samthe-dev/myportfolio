@@ -25,3 +25,12 @@
     color: #e2e8f0;
   }
 }
+
+/* Responsive utilities */
+@media (min-width: 768px) {
+  .hidden.md\:flex { display: flex !important; }
+}
+
+@media (max-width: 767px) {
+  .hidden.md\:flex { display: none !important; }
+}
