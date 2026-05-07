@@ -43,7 +43,7 @@ export default function Navbar() {
           style={{
             width: "100%", margin: "0 auto",
             display: "flex", alignItems: "center", justifyContent: "space-between",
-            padding: "0.75rem 1rem",
+            padding: "0.75rem 1.5rem",
             boxSizing: "border-box",
           }}
         >
