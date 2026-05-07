@@ -20,7 +20,7 @@ export default function Skills() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#00f0ff]/5 rounded-full blur-[150px]" style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: 600, height: 600, background: "rgba(0,240,255,0.05)", borderRadius: "50%", filter: "blur(150px)" }} />
       </div>
 
-      <div className="max-w-5xl mx-auto px-6 relative z-10" style={{ maxWidth: "64rem", margin: "0 auto", padding: "0 1.5rem", position: "relative", zIndex: 10 }}>
+      <div className="max-w-4xl mx-auto px-6 relative z-10" style={{ maxWidth: "56rem", margin: "0 auto", position: "relative", zIndex: 10 }}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

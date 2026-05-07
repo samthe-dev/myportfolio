@@ -20,7 +20,7 @@ export default function Contact() {
 
   return (
     <section id="contact" style={{ padding: "8rem 0", position: "relative" }}>
-      <div style={{ maxWidth: "48rem", margin: "0 auto", padding: "0 1.5rem", textAlign: "center" }}>
+      <div style={{ maxWidth: "56rem", margin: "0 auto", padding: "0 1.5rem", textAlign: "center" }}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

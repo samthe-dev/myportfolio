@@ -60,7 +60,7 @@ const itemVariants = {
 export default function Projects() {
   return (
     <section id="projects" style={{ padding: "8rem 0", position: "relative" }}>
-      <div style={{ maxWidth: "64rem", margin: "0 auto", padding: "0 1.5rem" }}>
+      <div style={{ maxWidth: "56rem", margin: "0 auto", padding: "0 1.5rem" }}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
