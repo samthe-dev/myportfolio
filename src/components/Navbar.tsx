@@ -7,7 +7,7 @@ const navLinks = [
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
+  { label: "Exp", href: "#experience" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -36,7 +36,7 @@ export default function Navbar() {
       }}
     >
       <div style={{
-        maxWidth: "72rem", margin: "0 auto", padding: "0 1.5rem",
+        maxWidth: "72rem", margin: "0 auto", padding: "0 1rem",
         display: "flex", alignItems: "center", justifyContent: "space-between",
       }}>
         {/* Logo */}
@@ -48,76 +48,27 @@ export default function Navbar() {
           <span style={{ color: "rgba(255,255,255,0.4)" }}>.dev</span>
         </a>
 
-        {/* Desktop Links */}
-        <ul className="hidden md:flex" style={{
-          display: "flex", alignItems: "center", gap: "2rem", listStyle: "none", margin: 0, padding: 0,
+        {/* Mobile Nav Links — horizontal scroll */}
+        <div style={{
+          display: "flex", alignItems: "center", gap: "1rem",
+          overflowX: "auto", scrollbarWidth: "none", flex: 1, justifyContent: "flex-end",
         }}>
           {navLinks.map((link) => (
-            <li key={link.label}>
-              <a
-                href={link.href}
-                style={{
-                  fontSize: "0.875rem", fontWeight: 500, color: "#94a3b8",
-                  textDecoration: "none", textTransform: "uppercase",
-                  letterSpacing: "0.1em", transition: "color 0.2s",
-                }}
-              >
-                {link.label}
-              </a>
-            </li>
+            <a
+              key={link.label}
+              href={link.href}
+              style={{
+                fontSize: "0.75rem", fontWeight: 600, color: "#94a3b8",
+                textDecoration: "none", textTransform: "uppercase",
+                letterSpacing: "0.05em", whiteSpace: "nowrap",
+                padding: "0.375rem 0.5rem",
+              }}
+            >
+              {link.label}
+            </a>
           ))}
-        </ul>
-
-        {/* Mobile Toggle */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden"
-          style={{
-            display: "none", background: "none", border: "none",
-            color: "rgba(255,255,255,0.7)", cursor: "none", padding: 0,
-          }}
-          aria-label="Toggle menu"
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            {mobileOpen ? <path d="M6 6l12 12M6 18L18 6" /> : <path d="M3 6h18M3 12h18M3 18h18" />}
-          </svg>
-        </button>
+        </div>
       </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            style={{
-              background: "rgba(10,10,15,0.95)", backdropFilter: "blur(20px)",
-              borderBottom: "1px solid rgba(255,255,255,0.05)",
-            }}
-          >
-            <ul style={{
-              display: "flex", flexDirection: "column", alignItems: "center",
-              gap: "1.5rem", padding: "2rem 0", listStyle: "none", margin: 0,
-            }}>
-              {navLinks.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    style={{
-                      fontSize: "0.875rem", fontWeight: 500, color: "#94a3b8",
-                      textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.1em",
-                    }}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </motion.nav>
   );
 }
