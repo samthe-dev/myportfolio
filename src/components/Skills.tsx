@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const skillCategories = [
   {
@@ -56,6 +57,12 @@ const itemVariants = {
 };
 
 export default function Skills() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <section id="skills" className="py-32 relative">
       {/* Background accent */}
@@ -109,12 +116,9 @@ export default function Skills() {
                       </span>
                     </div>
                     <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-                        className="h-full rounded-full bg-gradient-to-r from-[#00f0ff] to-[#a855f7]"
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-[#00f0ff] to-[#a855f7] transition-all duration-1000 ease-out"
+                        style={{ width: mounted ? `${skill.level}%` : "0%" }}
                       />
                     </div>
                   </div>
