@@ -2,24 +2,19 @@
 
 export default function Footer() {
   return (
-    <footer style={{
-      borderTop: "1px solid rgba(255,255,255,0.05)", padding: "2rem 0",
-    }}>
-      <div style={{
-        maxWidth: "56rem", margin: "0 auto", padding: "0 1.5rem",
-        display: "flex", flexWrap: "wrap", alignItems: "center",
-        justifyContent: "space-between", gap: "1rem",
-      }}>
-        <div style={{ fontSize: "0.875rem", color: "#94a3b8" }}>
+    <footer
+      className="border-t border-white/[0.05] py-8"
+    >
+      <div className="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="text-sm text-slate-400 text-center sm:text-left">
           © {new Date().getFullYear()}{" "}
-          <span style={{
-            background: "linear-gradient(135deg, #00f0ff, #a855f7)",
-            WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
-            fontWeight: 600,
-          }}>Sam</span> — COO of{" "}
-          <span style={{ color: "#00f0ff" }}>RexiO</span>
+          <span className="font-semibold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+            Sam
+          </span>{" "}
+          — COO of{" "}
+          <span className="text-cyan-400">RexiO</span>
         </div>
-        <div style={{ fontSize: "0.75rem", color: "rgba(148,163,184,0.5)", fontFamily: "monospace" }}>
+        <div className="text-xs text-slate-500 font-mono">
           Built with Next.js · React · Tailwind CSS
         </div>
       </div>

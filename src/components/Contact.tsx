@@ -19,45 +19,42 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" style={{ padding: "8rem 0", position: "relative" }}>
-      <div style={{ maxWidth: "56rem", margin: "0 auto", padding: "0 1.5rem", textAlign: "center" }}>
+    <section id="contact" className="py-24 md:py-32 relative">
+      <div className="max-w-4xl mx-auto px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
-          <span style={{
-            fontSize: "0.75rem", fontFamily: "monospace", color: "#00f0ff",
-            letterSpacing: "0.3em", textTransform: "uppercase",
-          }}>Contact</span>
-          <h2 style={{
-            fontSize: "clamp(2.25rem, 5vw, 3rem)", fontWeight: 700,
-            marginTop: "0.75rem", marginBottom: "1.5rem", letterSpacing: "-0.025em",
-          }}>Let's Connect</h2>
-          <p style={{ color: "#94a3b8", fontSize: "1.125rem", maxWidth: "36rem", margin: "0 auto 3rem" }}>
-            Interested in collaboration, have a project idea, or just want to say hello? I'd love to hear from you.
+          <span className="text-xs font-mono text-cyan-400 uppercase tracking-[0.3em]">
+            Contact
+          </span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mt-3 mb-6 tracking-tight">
+            Let&apos;s Connect
+          </h2>
+          <p className="text-slate-400 text-base md:text-lg max-w-lg mx-auto mb-10">
+            Interested in collaboration, have a project idea, or just want to say hello? I&apos;d love to hear from you.
           </p>
 
           {/* Email copy */}
           <button
             onClick={copyEmail}
+            className="inline-flex items-center gap-3 px-6 py-3.5 rounded-xl text-slate-200 cursor-pointer text-sm mb-10 transition-colors hover:border-cyan-400/20"
             style={{
-              display: "inline-flex", alignItems: "center", gap: "0.75rem",
-              padding: "0.875rem 1.5rem", borderRadius: "0.75rem",
-              background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)",
-              backdropFilter: "blur(12px)", color: "#e2e8f0", cursor: "pointer",
-              fontSize: "0.875rem", marginBottom: "2.5rem",
+              background: "rgba(255,255,255,0.03)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              backdropFilter: "blur(12px)",
             }}
           >
             <span>sammiahmedsam@gmail.com</span>
-            <span style={{ fontSize: "0.75rem", color: "#94a3b8" }}>
+            <span className="text-xs text-slate-400">
               {copied ? "✓ Copied!" : "Click to copy"}
             </span>
           </button>
 
           {/* Social links */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1rem" }}>
+          <div className="flex items-center justify-center gap-3">
             {socials.map((social) => (
               <a
                 key={social.label}
@@ -65,12 +62,11 @@ export default function Contact() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
+                className="w-12 h-12 rounded-xl flex items-center justify-center text-slate-400 hover:text-white transition-all duration-200 hover:border-cyan-400/20"
                 style={{
-                  width: 48, height: 48, borderRadius: "0.75rem",
-                  background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)",
-                  backdropFilter: "blur(12px)", display: "flex", alignItems: "center",
-                  justifyContent: "center", color: "#94a3b8", textDecoration: "none",
-                  transition: "all 0.3s",
+                  background: "rgba(255,255,255,0.03)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  backdropFilter: "blur(12px)",
                 }}
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">

@@ -12,10 +12,17 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
+const stats = [
+  { label: "Years Active", value: "3+" },
+  { label: "Projects", value: "10+" },
+  { label: "MCP Tools", value: "30" },
+  { label: "Cups of Tea", value: "∞" },
+];
+
 export default function About() {
   return (
-    <section id="about" style={{ padding: "8rem 0", position: "relative" }}>
-      <div style={{ maxWidth: "56rem", margin: "0 auto", padding: "0 1.5rem" }}>
+    <section id="about" className="py-24 md:py-32 relative">
+      <div className="max-w-4xl mx-auto px-6">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -23,39 +30,37 @@ export default function About() {
           viewport={{ once: true, margin: "-100px" }}
         >
           {/* Section Title */}
-          <motion.div variants={itemVariants} style={{ marginBottom: "4rem" }}>
-            <span style={{
-              fontSize: "0.75rem", fontFamily: "monospace", color: "#00f0ff",
-              letterSpacing: "0.3em", textTransform: "uppercase",
-            }}>About</span>
-            <h2 style={{
-              fontSize: "clamp(2.25rem, 5vw, 3rem)", fontWeight: 700,
-              marginTop: "0.75rem", letterSpacing: "-0.025em",
-            }}>Who I Am</h2>
+          <motion.div variants={itemVariants} className="mb-12 md:mb-16">
+            <span className="text-xs font-mono text-cyan-400 uppercase tracking-[0.3em]">
+              About
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mt-3 tracking-tight">
+              Who I Am
+            </h2>
           </motion.div>
 
           {/* Content */}
-          <motion.div variants={itemVariants} style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-            <p style={{ color: "#94a3b8", fontSize: "1.125rem", lineHeight: 1.75 }}>
-              I'm <span style={{ color: "#e2e8f0", fontWeight: 600 }}>Sam</span>, the
+          <motion.div variants={itemVariants} className="flex flex-col gap-5 md:gap-6">
+            <p className="text-slate-400 text-base md:text-lg leading-relaxed">
+              I&apos;m <span className="text-slate-200 font-semibold">Sam</span>, the
               Chief Operating Officer of{" "}
-              <span style={{ color: "#00f0ff", fontWeight: 600 }}>RexiO</span> — an
+              <span className="text-cyan-400 font-semibold">RexiO</span> — an
               advanced AI companion platform based in Bangladesh. I operate at
               the intersection of artificial intelligence, frontend engineering,
               and system architecture.
             </p>
-            <p style={{ color: "#94a3b8", fontSize: "1.125rem", lineHeight: 1.75 }}>
+            <p className="text-slate-400 text-base md:text-lg leading-relaxed">
               My expertise spans the full stack — from building{" "}
-              <span style={{ color: "#e2e8f0" }}>agentic AI workflows</span> and{" "}
-              <span style={{ color: "#e2e8f0" }}>neural memory systems</span> to
+              <span className="text-slate-200">agentic AI workflows</span> and{" "}
+              <span className="text-slate-200">neural memory systems</span> to
               crafting{" "}
-              <span style={{ color: "#e2e8f0" }}>premium, pixel-perfect user interfaces</span>.
+              <span className="text-slate-200">premium, pixel-perfect user interfaces</span>.
               I specialize in Next.js, React, TypeScript, and modern CSS architecture.
             </p>
-            <p style={{ color: "#94a3b8", fontSize: "1.125rem", lineHeight: 1.75 }}>
-              Beyond code, I'm deeply invested in{" "}
-              <span style={{ color: "#e2e8f0" }}>AI safety</span>,{" "}
-              <span style={{ color: "#e2e8f0" }}>frontend security</span> (OWASP standards),
+            <p className="text-slate-400 text-base md:text-lg leading-relaxed">
+              Beyond code, I&apos;m deeply invested in{" "}
+              <span className="text-slate-200">AI safety</span>,{" "}
+              <span className="text-slate-200">frontend security</span> (OWASP standards),
               and building systems that are both powerful and responsible.
             </p>
           </motion.div>
@@ -63,35 +68,24 @@ export default function About() {
           {/* Quick Stats */}
           <motion.div
             variants={itemVariants}
-            style={{
-              display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
-              gap: "1.5rem", marginTop: "4rem",
-            }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mt-10 md:mt-12"
           >
-            {[
-              { label: "Years Active", value: "3+" },
-              { label: "Projects", value: "10+" },
-              { label: "MCP Tools", value: "30" },
-              { label: "Cups of Tea", value: "∞" },
-            ].map((stat) => (
+            {stats.map((stat) => (
               <div
                 key={stat.label}
+                className="rounded-xl p-4 md:p-5 text-center"
                 style={{
-                  background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)",
-                  backdropFilter: "blur(12px)", borderRadius: "1rem", padding: "1.25rem",
-                  textAlign: "center",
+                  background: "rgba(255,255,255,0.03)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  backdropFilter: "blur(12px)",
                 }}
               >
-                <div style={{
-                  fontSize: "1.5rem", fontWeight: 700,
-                  background: "linear-gradient(135deg, #00f0ff, #a855f7)",
-                  WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
-                  marginBottom: "0.25rem",
-                }}>{stat.value}</div>
-                <div style={{
-                  fontSize: "0.75rem", color: "#94a3b8",
-                  textTransform: "uppercase", letterSpacing: "0.05em",
-                }}>{stat.label}</div>
+                <div className="text-xl md:text-2xl font-bold mb-1 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+                  {stat.value}
+                </div>
+                <div className="text-xs text-slate-400 uppercase tracking-wider">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </motion.div>

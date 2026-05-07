@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -37,13 +37,13 @@ export default function Navbar() {
         }}
       >
         <div className="max-w-4xl mx-auto flex items-center justify-between px-6 py-4">
-          {/* Logo — always left */}
+          {/* Logo */}
           <a href="#" className="text-lg font-extrabold tracking-tight no-underline shrink-0">
             <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">sam</span>
             <span className="text-white/30">.dev</span>
           </a>
 
-          {/* Desktop nav links — hidden on mobile */}
+          {/* Desktop nav — CSS-only responsive, no JS */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <a
@@ -56,7 +56,7 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* Desktop CTA — hidden on mobile */}
+          {/* Desktop CTA — CSS-only responsive */}
           <a
             href="#contact"
             className="hidden md:inline-flex text-sm font-semibold px-5 py-2 rounded-lg no-underline transition-all duration-200 items-center"
@@ -69,7 +69,7 @@ export default function Navbar() {
             Let&apos;s Talk
           </a>
 
-          {/* Hamburger — visible only on mobile */}
+          {/* Hamburger — CSS-only responsive, visible only on mobile */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="md:hidden relative flex flex-col items-center justify-center gap-[5px] p-1.5 bg-transparent border-none cursor-pointer z-[60]"
@@ -94,7 +94,7 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Mobile fullscreen overlay — only renders when open */}
+      {/* Mobile fullscreen overlay */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div

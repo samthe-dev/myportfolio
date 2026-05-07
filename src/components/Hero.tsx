@@ -6,55 +6,50 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      style={{
-        position: "relative",
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        overflow: "hidden",
-      }}
+      className="relative flex items-center justify-center overflow-hidden"
+      style={{ minHeight: "100vh" }}
     >
       {/* Background gradient orbs */}
-      <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none" }}>
-        <div style={{
-          position: "absolute", top: "25%", left: "-8rem", width: 384, height: 384,
-          background: "rgba(0,240,255,0.1)", borderRadius: "50%", filter: "blur(120px)",
-        }} />
-        <div style={{
-          position: "absolute", bottom: "25%", right: "-8rem", width: 384, height: 384,
-          background: "rgba(168,85,247,0.1)", borderRadius: "50%", filter: "blur(120px)",
-        }} />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div
+          className="absolute top-1/4 -left-20 w-64 h-64 md:w-96 md:h-96 rounded-full"
+          style={{ background: "rgba(0,240,255,0.1)", filter: "blur(120px)" }}
+        />
+        <div
+          className="absolute bottom-1/4 -right-20 w-64 h-64 md:w-96 md:h-96 rounded-full"
+          style={{ background: "rgba(168,85,247,0.1)", filter: "blur(120px)" }}
+        />
       </div>
 
       {/* Grid pattern */}
-      <div style={{
-        position: "absolute", inset: 0, opacity: 0.03,
-        backgroundImage: "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
-        backgroundSize: "60px 60px",
-      }} />
+      <div
+        className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+        }}
+      />
 
-      <div style={{ position: "relative", zIndex: 10, maxWidth: "56rem", margin: "0 auto", padding: "0 1.5rem", textAlign: "center" }}>
+      {/* Content */}
+      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 md:mb-8"
           style={{
-            display: "inline-flex", alignItems: "center", gap: "0.5rem",
-            padding: "0.5rem 1rem", borderRadius: "9999px",
-            background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)",
-            backdropFilter: "blur(12px)", marginBottom: "2rem",
+            background: "rgba(255,255,255,0.03)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            backdropFilter: "blur(12px)",
           }}
         >
-          <span style={{
-            width: 8, height: 8, borderRadius: "50%", background: "#00f0ff",
-            animation: "pulse 2s infinite",
-          }} />
-          <span style={{
-            fontSize: "0.75rem", fontFamily: "monospace", color: "#94a3b8",
-            letterSpacing: "0.1em", textTransform: "uppercase",
-          }}>
+          <span
+            className="w-2 h-2 rounded-full"
+            style={{ background: "#00f0ff", animation: "pulse 2s infinite" }}
+          />
+          <span className="text-xs font-mono text-slate-400 uppercase tracking-widest">
             AI Engineer & Frontend Developer
           </span>
         </motion.div>
@@ -64,13 +59,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}
-          style={{
-            fontSize: "clamp(3rem, 8vw, 6rem)", fontWeight: 700,
-            letterSpacing: "-0.025em", marginBottom: "1.5rem",
-            background: "linear-gradient(135deg, #00f0ff, #a855f7)",
-            WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-          }}
+          className="text-5xl sm:text-6xl md:text-8xl font-bold mb-4 md:mb-6 tracking-tight bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent"
         >
           Sam
         </motion.h1>
@@ -80,13 +69,10 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          style={{
-            fontSize: "clamp(1.125rem, 2.5vw, 1.25rem)", color: "#94a3b8",
-            maxWidth: "42rem", margin: "0 auto 2.5rem", lineHeight: 1.75,
-          }}
+          className="text-base sm:text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-8 md:mb-10 leading-relaxed px-2"
         >
           COO of{" "}
-          <span style={{ color: "#00f0ff", fontWeight: 600 }}>RexiO</span> —
+          <span className="text-cyan-400 font-semibold">RexiO</span> —
           Building AI-powered digital experiences, agentic workflows, and
           premium interfaces that push the boundaries of human-AI interaction.
         </motion.p>
@@ -96,35 +82,22 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
-          style={{
-            display: "flex", flexWrap: "wrap", alignItems: "center",
-            justifyContent: "center", gap: "1rem",
-          }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
         >
           <a
             href="#projects"
+            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 rounded-lg font-semibold text-sm uppercase tracking-wider text-center text-[#0a0a0f]"
             style={{
-              padding: "0.875rem 2rem", borderRadius: "0.5rem",
               background: "linear-gradient(90deg, #00f0ff, #a855f7)",
-              color: "#0a0a0f", fontWeight: 600, fontSize: "0.875rem",
-              textTransform: "uppercase", letterSpacing: "0.05em",
-              textDecoration: "none", display: "inline-block",
-              transition: "box-shadow 0.3s",
             }}
-            onMouseEnter={(e) => e.currentTarget.style.boxShadow = "0 0 30px rgba(0,240,255,0.3)"}
-            onMouseLeave={(e) => e.currentTarget.style.boxShadow = "none"}
           >
             View My Work
           </a>
           <a
             href="#contact"
+            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 rounded-lg font-semibold text-sm uppercase tracking-wider text-center text-slate-200"
             style={{
-              padding: "0.875rem 2rem", borderRadius: "0.5rem",
               border: "1px solid rgba(255,255,255,0.1)",
-              color: "#e2e8f0", fontWeight: 600, fontSize: "0.875rem",
-              textTransform: "uppercase", letterSpacing: "0.05em",
-              textDecoration: "none", display: "inline-block",
-              transition: "all 0.3s",
             }}
           >
             Get In Touch
@@ -136,23 +109,16 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
-          style={{
-            position: "absolute", bottom: "2.5rem", left: "50%",
-            transform: "translateX(-50%)",
-          }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:block"
         >
-          <div style={{
-            width: 24, height: 40, borderRadius: 20,
-            border: "2px solid rgba(255,255,255,0.2)",
-            display: "flex", alignItems: "flex-start", justifyContent: "center",
-            padding: "6px",
-          }}>
+          <div
+            className="w-6 h-10 rounded-full flex items-start justify-center p-1.5"
+            style={{ border: "2px solid rgba(255,255,255,0.2)" }}
+          >
             <motion.div
               animate={{ y: [0, 12, 0] }}
               transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              style={{
-                width: 6, height: 6, borderRadius: "50%", background: "#00f0ff",
-              }}
+              className="w-1.5 h-1.5 rounded-full bg-cyan-400"
             />
           </div>
         </motion.div>

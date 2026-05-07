@@ -31,31 +31,31 @@ const timeline = [
 
 export default function Experience() {
   return (
-    <section id="experience" style={{ padding: "8rem 0", position: "relative" }}>
-      <div style={{ maxWidth: "56rem", margin: "0 auto", padding: "0 1.5rem" }}>
+    <section id="experience" className="py-24 md:py-32 relative">
+      <div className="max-w-4xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          style={{ marginBottom: "4rem" }}
+          className="mb-12 md:mb-16"
         >
-          <span style={{
-            fontSize: "0.75rem", fontFamily: "monospace", color: "#00f0ff",
-            letterSpacing: "0.3em", textTransform: "uppercase",
-          }}>Journey</span>
-          <h2 style={{
-            fontSize: "clamp(2.25rem, 5vw, 3rem)", fontWeight: 700,
-            marginTop: "0.75rem", letterSpacing: "-0.025em",
-          }}>Experience</h2>
+          <span className="text-xs font-mono text-cyan-400 uppercase tracking-[0.3em]">
+            Journey
+          </span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mt-3 tracking-tight">
+            Experience
+          </h2>
         </motion.div>
 
-        <div style={{ position: "relative" }}>
+        <div className="relative">
           {/* Timeline line */}
-          <div style={{
-            position: "absolute", left: 0, top: 0, bottom: 0, width: 1,
-            background: "linear-gradient(to bottom, rgba(0,240,255,0.3), rgba(168,85,247,0.2), transparent)",
-          }} />
+          <div
+            className="absolute left-0 top-0 bottom-0 w-px hidden md:block"
+            style={{
+              background: "linear-gradient(to bottom, rgba(0,240,255,0.3), rgba(168,85,247,0.2), transparent)",
+            }}
+          />
 
           {timeline.map((item, index) => (
             <motion.div
@@ -64,36 +64,53 @@ export default function Experience() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              style={{ position: "relative", marginBottom: "3rem", paddingLeft: "2rem" }}
+              className="relative mb-8 md:mb-10 md:pl-8"
             >
-              {/* Dot */}
-              <div style={{
-                position: "absolute", left: -5, top: 4, width: 11, height: 11,
-                borderRadius: "50%", background: "#00f0ff",
-                boxShadow: "0 0 12px rgba(0,240,255,0.5)",
-              }} />
+              {/* Dot — desktop only */}
+              <div
+                className="absolute left-[-5px] top-1 w-[11px] h-[11px] rounded-full hidden md:block"
+                style={{
+                  background: "#00f0ff",
+                  boxShadow: "0 0 12px rgba(0,240,255,0.5)",
+                }}
+              />
 
-              <div style={{
-                background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)",
-                backdropFilter: "blur(12px)", borderRadius: "1rem", padding: "1.5rem",
-              }}>
-                <span style={{
-                  fontSize: "0.75rem", fontFamily: "monospace", color: "#00f0ff",
-                  textTransform: "uppercase", letterSpacing: "0.05em",
-                }}>{item.period}</span>
-                <h3 style={{ fontSize: "1.25rem", fontWeight: 700, color: "#e2e8f0", marginTop: "0.5rem", marginBottom: "0.75rem" }}>
+              {/* Mobile dot */}
+              <div
+                className="absolute left-0 top-1 w-2 h-2 rounded-full md:hidden"
+                style={{ background: "#00f0ff" }}
+              />
+
+              <div
+                className="rounded-xl p-5 md:p-6"
+                style={{
+                  background: "rgba(255,255,255,0.03)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  backdropFilter: "blur(12px)",
+                }}
+              >
+                <span className="text-xs font-mono text-cyan-400 uppercase tracking-wider">
+                  {item.period}
+                </span>
+                <h3 className="text-lg md:text-xl font-bold text-slate-200 mt-2 mb-3">
                   {item.title}
                 </h3>
-                <p style={{ color: "#94a3b8", fontSize: "0.875rem", lineHeight: 1.6, marginBottom: "1rem" }}>
+                <p className="text-slate-400 text-sm leading-relaxed mb-4">
                   {item.description}
                 </p>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+                <div className="flex flex-wrap gap-2">
                   {item.highlights.map((h) => (
-                    <span key={h} style={{
-                      fontSize: "0.75rem", padding: "0.25rem 0.625rem",
-                      borderRadius: "0.375rem", background: "rgba(0,240,255,0.05)",
-                      color: "rgba(0,240,255,0.8)", border: "1px solid rgba(0,240,255,0.1)",
-                    }}>{h}</span>
+                    <span
+                      key={h}
+                      className="text-xs px-2.5 py-1 rounded-md"
+                      style={{
+                        background: "rgba(0,240,255,0.05)",
+                        color: "rgba(0,240,255,0.8)",
+                        border: "1px solid rgba(0,240,255,0.1)",
+                      }}
+                    >
+                      {h}
+                    </span>
                   ))}
                 </div>
               </div>
