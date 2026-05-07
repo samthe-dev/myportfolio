@@ -81,10 +81,10 @@ export default function Projects() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6"
         >
           {projects.map((project) => (
-            <motion.div
+            <motion.article
               key={project.title}
               variants={itemVariants}
               className="rounded-xl p-5 md:p-6 transition-colors duration-300 hover:border-cyan-400/20"
@@ -135,7 +135,7 @@ export default function Projects() {
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </motion.div>
       </div>

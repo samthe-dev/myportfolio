@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     description:
       "COO of RexiO. Building AI-powered digital experiences and agentic workflows.",
     url: "https://samthe-dev.github.io/myportfolio/",
-    images: ["/og.png"],
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Sam | AI Engineer & Frontend Developer" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -61,8 +61,13 @@ export default function RootLayout({
       <head>
         <link rel="icon" type="image/png" href="/favicon.png" />
         <meta name="theme-color" content="#0a0a0f" />
+        <link rel="canonical" href="https://myportfolio-xi-tan-62.vercel.app" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+        <link rel="preconnect" href="https://cdn.vercel-insights.com" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+        <meta property="og:site_name" content="Sam Portfolio" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

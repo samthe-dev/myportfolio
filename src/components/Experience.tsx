@@ -49,7 +49,7 @@ export default function Experience() {
         </motion.div>
 
         <div className="relative">
-          {/* Timeline line */}
+          {/* Timeline line — desktop */}
           <div
             className="absolute left-0 top-0 bottom-0 w-px hidden md:block"
             style={{
@@ -64,45 +64,39 @@ export default function Experience() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="relative mb-8 md:mb-10 md:pl-8"
+              className="relative mb-6 md:mb-8 pl-6 md:pl-8"
             >
-              {/* Dot — desktop only */}
+              {/* Dot */}
               <div
-                className="absolute left-[-5px] top-1 w-[11px] h-[11px] rounded-full hidden md:block"
+                className="absolute left-0 top-1.5 w-2.5 h-2.5 rounded-full md:w-[11px] md:h-[11px] md:left-[-5px] md:top-1"
                 style={{
                   background: "#00f0ff",
                   boxShadow: "0 0 12px rgba(0,240,255,0.5)",
                 }}
               />
 
-              {/* Mobile dot */}
               <div
-                className="absolute left-0 top-1 w-2 h-2 rounded-full md:hidden"
-                style={{ background: "#00f0ff" }}
-              />
-
-              <div
-                className="rounded-xl p-5 md:p-6"
+                className="rounded-xl p-4 md:p-6"
                 style={{
                   background: "rgba(255,255,255,0.03)",
                   border: "1px solid rgba(255,255,255,0.08)",
                   backdropFilter: "blur(12px)",
                 }}
               >
-                <span className="text-xs font-mono text-cyan-400 uppercase tracking-wider">
+                <span className="text-[10px] md:text-xs font-mono text-cyan-400 uppercase tracking-wider">
                   {item.period}
                 </span>
-                <h3 className="text-lg md:text-xl font-bold text-slate-200 mt-2 mb-3">
+                <h3 className="text-base md:text-xl font-bold text-slate-200 mt-1.5 md:mt-2 mb-2 md:mb-3">
                   {item.title}
                 </h3>
-                <p className="text-slate-400 text-sm leading-relaxed mb-4">
+                <p className="text-slate-400 text-xs md:text-sm leading-relaxed mb-3 md:mb-4">
                   {item.description}
                 </p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5 md:gap-2">
                   {item.highlights.map((h) => (
                     <span
                       key={h}
-                      className="text-xs px-2.5 py-1 rounded-md"
+                      className="text-[10px] md:text-xs px-2 py-0.5 md:py-1 rounded-md"
                       style={{
                         background: "rgba(0,240,255,0.05)",
                         color: "rgba(0,240,255,0.8)",
