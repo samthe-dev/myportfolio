@@ -4,9 +4,7 @@ import { motion } from "framer-motion";
 
 const containerVariants = {
   hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.15 },
-  },
+  visible: { transition: { staggerChildren: 0.15 } },
 };
 
 const itemVariants = {
@@ -16,8 +14,8 @@ const itemVariants = {
 
 export default function About() {
   return (
-    <section id="about" className="py-32 relative">
-      <div className="max-w-4xl mx-auto px-6">
+    <section id="about" style={{ padding: "8rem 0", position: "relative" }}>
+      <div style={{ maxWidth: "56rem", margin: "0 auto", padding: "0 1.5rem" }}>
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -25,50 +23,50 @@ export default function About() {
           viewport={{ once: true, margin: "-100px" }}
         >
           {/* Section Title */}
-          <motion.div variants={itemVariants} className="mb-16">
-            <span className="text-xs font-mono text-[#00f0ff] uppercase tracking-[0.3em]">
-              About
-            </span>
-            <h2 className="text-4xl sm:text-5xl font-bold mt-3 tracking-tight">
-              Who I Am
-            </h2>
+          <motion.div variants={itemVariants} style={{ marginBottom: "4rem" }}>
+            <span style={{
+              fontSize: "0.75rem", fontFamily: "monospace", color: "#00f0ff",
+              letterSpacing: "0.3em", textTransform: "uppercase",
+            }}>About</span>
+            <h2 style={{
+              fontSize: "clamp(2.25rem, 5vw, 3rem)", fontWeight: 700,
+              marginTop: "0.75rem", letterSpacing: "-0.025em",
+            }}>Who I Am</h2>
           </motion.div>
 
           {/* Content */}
-          <motion.div variants={itemVariants} className="space-y-6 text-[#94a3b8] text-lg leading-relaxed">
-            <p>
-              I'm <span className="text-[#e2e8f0] font-semibold">Sam</span>, the
+          <motion.div variants={itemVariants} style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+            <p style={{ color: "#94a3b8", fontSize: "1.125rem", lineHeight: 1.75 }}>
+              I'm <span style={{ color: "#e2e8f0", fontWeight: 600 }}>Sam</span>, the
               Chief Operating Officer of{" "}
-              <span className="text-[#00f0ff] font-semibold">RexiO</span> — an
+              <span style={{ color: "#00f0ff", fontWeight: 600 }}>RexiO</span> — an
               advanced AI companion platform based in Bangladesh. I operate at
               the intersection of artificial intelligence, frontend engineering,
               and system architecture.
             </p>
-            <p>
+            <p style={{ color: "#94a3b8", fontSize: "1.125rem", lineHeight: 1.75 }}>
               My expertise spans the full stack — from building{" "}
-              <span className="text-[#e2e8f0]">agentic AI workflows</span> and{" "}
-              <span className="text-[#e2e8f0]">neural memory systems</span> to
+              <span style={{ color: "#e2e8f0" }}>agentic AI workflows</span> and{" "}
+              <span style={{ color: "#e2e8f0" }}>neural memory systems</span> to
               crafting{" "}
-              <span className="text-[#e2e8f0]">
-                premium, pixel-perfect user interfaces
-              </span>
-              . I specialize in Next.js, React, TypeScript, and modern CSS
-              architecture.
+              <span style={{ color: "#e2e8f0" }}>premium, pixel-perfect user interfaces</span>.
+              I specialize in Next.js, React, TypeScript, and modern CSS architecture.
             </p>
-            <p>
+            <p style={{ color: "#94a3b8", fontSize: "1.125rem", lineHeight: 1.75 }}>
               Beyond code, I'm deeply invested in{" "}
-              <span className="text-[#e2e8f0]">AI safety</span>,{" "}
-              <span className="text-[#e2e8f0]">frontend security</span> (OWASP
-              standards), and building systems that are both powerful and
-              responsible. I believe technology should enhance human capability,
-              not replace it.
+              <span style={{ color: "#e2e8f0" }}>AI safety</span>,{" "}
+              <span style={{ color: "#e2e8f0" }}>frontend security</span> (OWASP standards),
+              and building systems that are both powerful and responsible.
             </p>
           </motion.div>
 
           {/* Quick Stats */}
           <motion.div
             variants={itemVariants}
-            className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-16"
+            style={{
+              display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
+              gap: "1.5rem", marginTop: "4rem",
+            }}
           >
             {[
               { label: "Years Active", value: "3+" },
@@ -76,13 +74,24 @@ export default function About() {
               { label: "MCP Tools", value: "30" },
               { label: "Cups of Tea", value: "∞" },
             ].map((stat) => (
-              <div key={stat.label} className="glass rounded-xl p-5 text-center">
-                <div className="text-2xl font-bold gradient-text mb-1">
-                  {stat.value}
-                </div>
-                <div className="text-xs text-[#94a3b8] uppercase tracking-wider">
-                  {stat.label}
-                </div>
+              <div
+                key={stat.label}
+                style={{
+                  background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)",
+                  backdropFilter: "blur(12px)", borderRadius: "1rem", padding: "1.25rem",
+                  textAlign: "center",
+                }}
+              >
+                <div style={{
+                  fontSize: "1.5rem", fontWeight: 700,
+                  background: "linear-gradient(135deg, #00f0ff, #a855f7)",
+                  WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+                  marginBottom: "0.25rem",
+                }}>{stat.value}</div>
+                <div style={{
+                  fontSize: "0.75rem", color: "#94a3b8",
+                  textTransform: "uppercase", letterSpacing: "0.05em",
+                }}>{stat.label}</div>
               </div>
             ))}
           </motion.div>
