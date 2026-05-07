@@ -69,7 +69,7 @@ export default function Navbar() {
             <span style={{ color: "rgba(255,255,255,0.3)" }}>.dev</span>
           </a>
 
-          {/* Hamburger Button — always visible on mobile */}
+          {/* Hamburger Button */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             style={{
