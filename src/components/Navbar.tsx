@@ -14,17 +14,24 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    // Detect desktop
+    const checkDesktop = () => setIsDesktop(window.innerWidth >= 768);
+    checkDesktop();
+    window.addEventListener("resize", checkDesktop);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", checkDesktop);
+    };
   }, []);
 
-  // Close mobile menu on link click
-  const handleLinkClick = () => {
-    setMobileOpen(false);
-  };
+  const handleLinkClick = () => setMobileOpen(false);
 
   return (
     <>
@@ -33,17 +40,23 @@ export default function Navbar() {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         style={{
-          position: "fixed", top: 0, left: 0, width: "100%", zIndex: 50,
+          position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
+          width: "100%",
           background: scrolled ? "rgba(10,10,15,0.85)" : "rgba(10,10,15,0.6)",
           backdropFilter: "blur(16px)",
           borderBottom: "1px solid rgba(255,255,255,0.06)",
           transition: "all 0.3s ease",
+          boxSizing: "border-box",
         }}
       >
         <div style={{
-          maxWidth: "72rem", margin: "0 auto", padding: "0 1.25rem",
+          width: "100%",
+          maxWidth: isDesktop ? "72rem" : "100%",
+          margin: "0 auto",
+          padding: isDesktop ? "0 2rem" : "0 1rem",
           display: "flex", alignItems: "center", justifyContent: "space-between",
           height: "60px",
+          boxSizing: "border-box",
         }}>
           {/* Logo */}
           <a href="#" style={{
@@ -58,70 +71,73 @@ export default function Navbar() {
             <span style={{ color: "rgba(255,255,255,0.3)" }}>.dev</span>
           </a>
 
-          {/* Desktop Nav — hidden on mobile */}
-          <div className="hidden md:flex" style={{
-            display: "flex", alignItems: "center", gap: "2rem",
-          }}>
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                style={{
-                  fontSize: "0.8rem", fontWeight: 600, color: "#94a3b8",
-                  textDecoration: "none", textTransform: "uppercase",
-                  letterSpacing: "0.1em", transition: "color 0.2s",
-                  padding: "0.5rem 0",
-                  position: "relative",
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.color = "#00f0ff"}
-                onMouseLeave={(e) => e.currentTarget.style.color = "#94a3b8"}
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
+          {/* Desktop Nav */}
+          {isDesktop && (
+            <div style={{
+              display: "flex", alignItems: "center", gap: "2rem",
+            }}>
+              {navLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  style={{
+                    fontSize: "0.8rem", fontWeight: 600, color: "#94a3b8",
+                    textDecoration: "none", textTransform: "uppercase",
+                    letterSpacing: "0.1em", transition: "color 0.2s",
+                    padding: "0.5rem 0",
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.color = "#00f0ff"}
+                  onMouseLeave={(e) => e.currentTarget.style.color = "#94a3b8"}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          )}
 
-          {/* Mobile Hamburger Button */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            style={{
-              display: "flex", flexDirection: "column", justifyContent: "center",
-              alignItems: "center", gap: "5px", background: "none", border: "none",
-              cursor: "pointer", padding: "0.5rem", zIndex: 60,
-            }}
-            aria-label="Toggle menu"
-          >
-            <motion.span
-              animate={mobileOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-              transition={{ duration: 0.3 }}
+          {/* Mobile Hamburger — only on mobile */}
+          {!isDesktop && (
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
               style={{
-                width: 24, height: 2, background: "#e2e8f0",
-                borderRadius: 2, display: "block", transformOrigin: "center",
+                display: "flex", flexDirection: "column", justifyContent: "center",
+                alignItems: "center", gap: "5px", background: "none", border: "none",
+                cursor: "pointer", padding: "0.5rem", zIndex: 60,
               }}
-            />
-            <motion.span
-              animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
-              transition={{ duration: 0.2 }}
-              style={{
-                width: 24, height: 2, background: "#e2e8f0",
-                borderRadius: 2, display: "block",
-              }}
-            />
-            <motion.span
-              animate={mobileOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-              transition={{ duration: 0.3 }}
-              style={{
-                width: 24, height: 2, background: "#e2e8f0",
-                borderRadius: 2, display: "block", transformOrigin: "center",
-              }}
-            />
-          </button>
+              aria-label="Toggle menu"
+            >
+              <motion.span
+                animate={mobileOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.3 }}
+                style={{
+                  width: 24, height: 2, background: "#e2e8f0",
+                  borderRadius: 2, display: "block", transformOrigin: "center",
+                }}
+              />
+              <motion.span
+                animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
+                transition={{ duration: 0.2 }}
+                style={{
+                  width: 24, height: 2, background: "#e2e8f0",
+                  borderRadius: 2, display: "block",
+                }}
+              />
+              <motion.span
+                animate={mobileOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.3 }}
+                style={{
+                  width: 24, height: 2, background: "#e2e8f0",
+                  borderRadius: 2, display: "block", transformOrigin: "center",
+                }}
+              />
+            </button>
+          )}
         </div>
       </motion.nav>
 
       {/* Mobile Fullscreen Menu Overlay */}
       <AnimatePresence>
-        {mobileOpen && (
+        {mobileOpen && !isDesktop && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -149,23 +165,18 @@ export default function Navbar() {
                 style={{
                   fontSize: "1.5rem", fontWeight: 700, color: "#e2e8f0",
                   textDecoration: "none", textTransform: "uppercase",
-                  letterSpacing: "0.15em", transition: "color 0.2s",
+                  letterSpacing: "0.15em",
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.color = "#00f0ff"}
-                onMouseLeave={(e) => e.currentTarget.style.color = "#e2e8f0"}
               >
                 {link.label}
               </motion.a>
             ))}
 
-            {/* Social links in mobile menu */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              style={{
-                display: "flex", gap: "1.5rem", marginTop: "2rem",
-              }}
+              style={{ display: "flex", gap: "1.5rem", marginTop: "2rem" }}
             >
               <a href="https://github.com/samthe-dev" target="_blank" rel="noopener noreferrer" style={{ color: "#94a3b8" }}>
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" /></svg>
