@@ -73,7 +73,7 @@ export default function About() {
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="rounded-xl p-4 md:p-5 text-center"
+                className="rounded-xl p-4 md:p-5 text-center hover:border-cyan-400/20 transition-colors duration-300"
                 style={{
                   background: "rgba(255,255,255,0.03)",
                   border: "1px solid rgba(255,255,255,0.08)",

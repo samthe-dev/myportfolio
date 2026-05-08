@@ -90,7 +90,7 @@ export default function Skills() {
             <motion.div
               key={category.title}
               variants={itemVariants}
-              className="rounded-2xl p-5 md:p-6 transition-colors duration-300 hover:border-cyan-400/20"
+              className="rounded-2xl p-5 md:p-6 transition-all duration-300 hover:border-cyan-400/20 hover:scale-[1.02]"
               style={{
                 background: "rgba(255,255,255,0.03)",
                 border: "1px solid rgba(255,255,255,0.08)",

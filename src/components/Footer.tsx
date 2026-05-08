@@ -14,7 +14,7 @@ export default function Footer() {
           — COO of{" "}
           <span className="text-cyan-400">RexiO</span>
         </div>
-        <div className="text-xs text-slate-500 font-mono">
+        <div className="text-xs text-slate-400 font-mono">
           Built with Next.js · React · Tailwind CSS
         </div>
       </div>

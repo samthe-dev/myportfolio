@@ -49,7 +49,7 @@ export default function Hero() {
             className="w-2 h-2 rounded-full"
             style={{ background: "#00f0ff", animation: "pulse 2s infinite" }}
           />
-          <span className="text-xs font-mono text-slate-400 uppercase tracking-widest">
+          <span className="text-xs font-mono text-slate-300 uppercase tracking-widest">
             AI Engineer & Frontend Developer
           </span>
         </motion.div>
@@ -86,7 +86,7 @@ export default function Hero() {
         >
           <a
             href="#projects"
-            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 rounded-lg font-semibold text-sm uppercase tracking-wider text-center text-[#0a0a0f]"
+            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 rounded-lg font-semibold text-sm uppercase tracking-wider text-center text-[#0a0a0f] hover:opacity-90 transition-opacity duration-200"
             style={{
               background: "linear-gradient(90deg, #00f0ff, #a855f7)",
             }}
@@ -95,7 +95,7 @@ export default function Hero() {
           </a>
           <a
             href="#contact"
-            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 rounded-lg font-semibold text-sm uppercase tracking-wider text-center text-slate-200"
+            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 rounded-lg font-semibold text-sm uppercase tracking-wider text-center text-slate-200 hover:text-white transition-colors duration-200"
             style={{
               border: "1px solid rgba(255,255,255,0.1)",
             }}

@@ -72,6 +72,7 @@ export default function Experience() {
                 style={{
                   background: "#00f0ff",
                   boxShadow: "0 0 12px rgba(0,240,255,0.5)",
+                  animation: "pulse 2s infinite",
                 }}
               />
 

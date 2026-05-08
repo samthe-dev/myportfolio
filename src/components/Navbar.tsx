@@ -120,7 +120,7 @@ export default function Navbar() {
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3, delay: i * 0.08 }}
                 onClick={() => setMobileOpen(false)}
-                className="text-2xl font-bold text-slate-200 no-underline uppercase tracking-[0.15em] py-3"
+                className="text-2xl font-bold text-slate-200 no-underline uppercase tracking-[0.15em] py-4"
               >
                 {link.label}
               </motion.a>

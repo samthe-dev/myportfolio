@@ -62,7 +62,7 @@ export default function Contact() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className="w-12 h-12 rounded-xl flex items-center justify-center text-slate-400 hover:text-white transition-all duration-200 hover:border-cyan-400/20"
+                className="w-12 h-12 rounded-xl flex items-center justify-center text-slate-400 hover:text-cyan-400 transition-all duration-200 hover:border-cyan-400/30 hover:shadow-[0_0_15px_rgba(0,240,255,0.15)]"
                 style={{
                   background: "rgba(255,255,255,0.03)",
                   border: "1px solid rgba(255,255,255,0.08)",
